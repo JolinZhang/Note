@@ -6,20 +6,23 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
-    public ImageButton write;
+    private ImageButton write;
+    private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //click button, connect to another activity
         write = (ImageButton) findViewById(R.id.write);
         write.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                v.startAnimation(buttonClick);
                 startActivity(new Intent(MainActivity.this,write.class));
             }
         });
