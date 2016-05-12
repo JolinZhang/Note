@@ -1,3 +1,4 @@
 <resources>
-    <color name="titlebackgroundcolor">#0000aa</color>
+    <color name="ActionBar_bg">#eeeeee</color>
+    <color name="ActionBar_title">#999999</color>
 </resources>
