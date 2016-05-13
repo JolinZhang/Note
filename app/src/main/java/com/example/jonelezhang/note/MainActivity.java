@@ -27,10 +27,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
     }
+//  press back button from main activity close
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        finish();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

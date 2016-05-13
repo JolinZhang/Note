@@ -1,16 +1,52 @@
 package com.example.jonelezhang.note;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.preference.DialogPreference;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
 public class write extends AppCompatActivity {
+    private ImageButton takePhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write);
+//      photo button click, show alertDialog
+        takePhoto = (ImageButton) findViewById(R.id.photo);
+        takePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectImage();
+            }
+        });
+
+    }
+//  design alertDialog
+    private void selectImage(){
+        final CharSequence photoOptions[] = new CharSequence[]{"Take Photo", "Choose Photo"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Add Photo");
+        builder.setItems(photoOptions, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(photoOptions[which].equals("Take Photo")){
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent,1);
+                }else if(photoOptions[which].equals("Choose Photo")) {
+                    Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(intent, 2);
+                }
+            }
+        });
+        builder.show();
     }
 
     @Override
