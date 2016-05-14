@@ -14,6 +14,7 @@ import android.preference.DialogPreference;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -67,28 +68,16 @@ public class write extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
        if(resultCode == RESULT_OK) {
-           //define dir folder
-           String root = Environment.getExternalStorageDirectory().toString();
-           File myDir = new File(root + "/notes_images");
-           if (!myDir.exists()) {
-               myDir.mkdirs();
-           }
            addPhoto = (ImageView) findViewById(R.id.addPhoto);
            // take photo
            if (requestCode == 1) {
            //  show Thumbnail of picture as bg
                Bundle extras = data.getExtras();
                Bitmap imageBitmap = (Bitmap) extras.get("data");
+               //show in ImageView
                addPhoto.setImageBitmap(imageBitmap);
-           //  define picture name
-               File file = new File(myDir, "image.jpg");
-               try {
-                   FileOutputStream out = new FileOutputStream(file);
-                   out.flush();
-                   out.close();
-               } catch (Exception e) {
-                   e.printStackTrace();
-               }
+               //save picture
+               savePicture(imageBitmap);
            }else if(requestCode == 2){
                Uri selectedImage = data.getData();
                //addPhoto.setImageURI(selectedImage);
@@ -101,9 +90,34 @@ public class write extends AppCompatActivity {
                File imgFile = new  File(picturePath);
                //rotate picture
                Bitmap bitmap = rotatePicture(imgFile);
+               //show in ImageView
                addPhoto.setImageBitmap(bitmap);
+               //save picture
+               savePicture(bitmap);
            }
        }
+    }
+    //define save path and save file name for taking photo and choose photo
+    public void savePicture(Bitmap imageBitmap){
+        //define dir folder
+        String root = Environment.getExternalStorageDirectory().toString();
+        File myDir = new File(root + "/notes_images");
+        if (!myDir.exists()) {
+            myDir.mkdirs();
+        }
+        //  define picture name as current time
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        String timeStamp = dateFormat.format(date);
+        File file = new File(myDir, timeStamp+".jpg");
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            imageBitmap.compress(Bitmap.CompressFormat.JPEG,100,out);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     // rotate picture
     public Bitmap rotatePicture(File imgFile){
@@ -154,7 +168,6 @@ public class write extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }
