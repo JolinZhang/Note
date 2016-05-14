@@ -3,8 +3,11 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     tools:context="com.example.jonelezhang.note.write"
-    android:orientation="vertical"
-    android:weightSum="1">
+    android:orientation="vertical">
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/addPhoto" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -28,6 +31,8 @@
         android:elevation="5dp"
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal" />
+
+
     </LinearLayout>
 
     <ImageButton
@@ -52,4 +57,7 @@
         android:layout_margin="10dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"/>
+
+
+
 </RelativeLayout>
