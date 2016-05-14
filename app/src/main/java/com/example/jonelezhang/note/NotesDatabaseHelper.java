@@ -39,7 +39,7 @@ public class NotesDatabaseHelper extends SQLiteOpenHelper {
     // add a new row into database
     public void addNote(Note note){
         ContentValues values = new ContentValues();
-        values.put(COLUMN_TITLE, note.gettitle());
+        values.put(COLUMN_TITLE, note.getTitle());
         values.put(COLUMN_CONTENT,note.getContent());
         values.put(COLUMN_IMAGE_ID,note.getImageResourceId());
         SQLiteDatabase db = getWritableDatabase();
