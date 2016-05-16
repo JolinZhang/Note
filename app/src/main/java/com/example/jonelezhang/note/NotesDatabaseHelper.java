@@ -24,11 +24,11 @@ public class NotesDatabaseHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE" + TABLE_NAME + "("
-                + COLUMN_ID + "INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + COLUMN_TITLE + "TEXT,"
-                + COLUMN_CONTENT + "TEXT,"
-                + COLUMN_IMAGE_ID + "TEXT);");
+        db.execSQL(" CREATE TABLE " + TABLE_NAME + " ( "
+                + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COLUMN_TITLE + " TEXT,"
+                + COLUMN_CONTENT + " TEXT,"
+                + COLUMN_IMAGE_ID + " TEXT);");
     }
 
     @Override

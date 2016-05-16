@@ -19,6 +19,7 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -29,13 +30,21 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class write extends AppCompatActivity {
+    private EditText title;
+    private EditText content;
+    private String imageResourcesId;
     private ImageButton takePhoto;
     private ImageView addPhoto;
+    private ImageButton submit;
+    private NotesDatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write);
+        title = (EditText) findViewById( R.id.title );
+        content = (EditText) findViewById( R.id.content );
+        dbHelper = new NotesDatabaseHelper(this);
 //      photo button click, show alertDialog
         takePhoto = (ImageButton) findViewById(R.id.photo);
         takePhoto.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +53,22 @@ public class write extends AppCompatActivity {
                 selectImage();
             }
         });
+        submit = (ImageButton) findViewById(R.id.submit);
+        submit.setOnClickListener( new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                 saveNote();
+            }
+        });
+    }
+    // save title, content and image_id into note
+    public void saveNote(){
+        Note note = new Note("");
+        note.setTitle(title.getText().toString());
+        note.setContent(content.getText().toString());
+        note.setImageResourceId(imageResourcesId);
+        //use function addNote in class NotesDatabaseHelper to insert data
+        dbHelper.addNote(note);
     }
 //  design alertDialog
     private void selectImage(){
@@ -109,7 +134,8 @@ public class write extends AppCompatActivity {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         String timeStamp = dateFormat.format(date);
-        File file = new File(myDir, timeStamp+".jpg");
+        imageResourcesId = timeStamp+".jpg";
+        File file = new File(myDir, imageResourcesId);
         try {
             FileOutputStream out = new FileOutputStream(file);
             imageBitmap.compress(Bitmap.CompressFormat.JPEG,100,out);
