@@ -3,20 +3,43 @@ package com.example.jonelezhang.note;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton write;
     private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
+    private CardView mCardView;
+    private ImageView noteImage;
+    private TextView noteTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        noteImage = (ImageView) findViewById(R.id.noteImage);
+        noteTitle = (TextView) findViewById(R.id.noteTitle);
+        // get getAllNote function in  NotesDatabaseHelper
+        NotesDatabaseHelper noteHelper = new NotesDatabaseHelper(getBaseContext());
+        List<Note> noteList = noteHelper.getAllNote();
+        for (Note note : noteList){
+
+        }
+
+
+
+
+
+
         //click button, connect to another activity
         write = (ImageButton) findViewById(R.id.write);
         write.setOnClickListener(new View.OnClickListener() {

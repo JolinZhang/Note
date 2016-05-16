@@ -2,8 +2,12 @@ package com.example.jonelezhang.note;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Jonelezhang on 5/10/16.
@@ -38,12 +42,33 @@ public class NotesDatabaseHelper extends SQLiteOpenHelper {
     }
     // add a new row into database
     public void addNote(Note note){
+        SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_TITLE, note.getTitle());
         values.put(COLUMN_CONTENT,note.getContent());
         values.put(COLUMN_IMAGE_ID,note.getImageResourceId());
-        SQLiteDatabase db = getWritableDatabase();
-        db.insert(TABLE_NAME,null,values);
+        db.insert(TABLE_NAME, null, values);
         db.close();
+    }
+    // get all note list from database
+    public List<Note> getAllNote(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "Select * from " + TABLE_NAME;
+        Cursor c  = db.rawQuery(selectQuery,null);
+        List<Note> noteList = new ArrayList<Note>();
+        try{
+        if(c.moveToFirst()){
+            do{
+                Note note = new Note("");
+                note.setTitle(c.getString(1));
+                note.setContent(c.getString(2));
+                note.setImageResourceId(c.getString(3));
+                noteList.add(note);
+            }while(c.moveToNext());
+        }
+        }finally{
+            c.close();
+        }
+        return noteList;
     }
 }
