@@ -1,10 +1,14 @@
 package com.example.jonelezhang.note;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -45,9 +49,14 @@ public class Adapter extends BaseAdapter{
             convertView = inflater.inflate(R.layout.layout_note,null);
         }
         TextView title =(TextView) convertView.findViewById(R.id.noteTitle);
+        ImageView photo = (ImageView) convertView.findViewById(R.id.noteImage);
         Note note;
         note = noteList.get(position);
         title.setText(note.getTitle());
+        //file path
+        String path = Environment.getExternalStorageDirectory().toString() + "/notes_images/";
+        String photoPath = path + note.getImageResourceId();
+        photo.setImageDrawable(Drawable.createFromPath(photoPath));
         return convertView;
     }
 }

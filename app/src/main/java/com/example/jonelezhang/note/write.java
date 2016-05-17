@@ -58,6 +58,7 @@ public class write extends AppCompatActivity {
             @Override
             public void onClick(View v){
                  saveNote();
+                 startActivity(new Intent(write.this, MainActivity.class));
             }
         });
     }
