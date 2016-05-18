@@ -1,18 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <ImageView
-    android:layout_width="fill_parent"
-    android:layout_height="190dp"
-    android:id="@+id/noteImage"
-    />
-    <TextView
-    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/noteTitle"
-    android:textAppearance="?android:attr/textAppearanceMedium"
-    android:textColor="#333333"
-    android:layout_marginLeft="10dp"/>
+    android:orientation="vertical">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:id="@+id/noteCount"
+            android:textColor="#333333"
+            android:background="#00aa00"
+            android:layout_gravity="center" />
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:id="@+id/noteImage"
+            android:background="#aa00aa"
+            />
+    </LinearLayout>
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/noteTitle"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#333333"
+        android:background="#aaaaaa"
+        android:layout_marginBottom="10dp"/>
 </LinearLayout>
