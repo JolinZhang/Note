@@ -1,6 +1,7 @@
 package com.example.jonelezhang.note;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -62,18 +63,14 @@ public class Adapter extends BaseAdapter{
 //        if no photo not show ImageView block
         if(note.getImageResourceId() == null)
              {
-                 photo.getLayoutParams().height = 0;
-                 count.getLayoutParams().height = 0;
-
-             }
-        else{
-                photo.getLayoutParams().height = 310;
-                count.getLayoutParams().height= 310;
+                 int id = context.getResources().getIdentifier("com.example.jonelezhang.note:drawable/" + "def", null, null);
+                 photo.setImageResource(id);
+             } else{
             //Photo file path and show photo
                 String path = Environment.getExternalStorageDirectory().toString() + "/notes_images/";
                 String photoPath = path + note.getImageResourceId();
                 Bitmap myBitmap = BitmapFactory.decodeFile(photoPath);
-                photo.setImageBitmap(Bitmap.createScaledBitmap(myBitmap, 260 , 270, false));
+                photo.setImageBitmap(Bitmap.createScaledBitmap(myBitmap, 220 , 270, false));
                 count.setText(String.valueOf(position));
         }
         return convertView;
