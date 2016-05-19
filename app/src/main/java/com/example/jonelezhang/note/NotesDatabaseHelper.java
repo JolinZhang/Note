@@ -20,6 +20,7 @@ public class NotesDatabaseHelper extends SQLiteOpenHelper {
     private static final String  COLUMN_TITLE="TITLE";
     private static final String  COLUMN_CONTENT="CONTENT";
     private static final String  COLUMN_IMAGE_ID="IMAGE_RESOURCE_ID";
+    private static final String  COLUMN_CREATE_TIME="CREATE_TIME";
 
 //  constructor of class
     NotesDatabaseHelper(Context context)
@@ -30,9 +31,10 @@ public class NotesDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(" CREATE TABLE " + TABLE_NAME + " ( "
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + COLUMN_TITLE + " TEXT,"
+                + COLUMN_TITLE + " TEXT NOT NULL,"
                 + COLUMN_CONTENT + " TEXT,"
-                + COLUMN_IMAGE_ID + " TEXT);");
+                + COLUMN_IMAGE_ID + " TEXT,"
+                + COLUMN_CREATE_TIME + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP);");
     }
 
     @Override
@@ -63,6 +65,7 @@ public class NotesDatabaseHelper extends SQLiteOpenHelper {
                 note.setTitle(c.getString(1));
                 note.setContent(c.getString(2));
                 note.setImageResourceId(c.getString(3));
+                note.setCreateTime(c.getString(4));
                 noteList.add(note);
             }while(c.moveToNext());
         }
@@ -70,5 +73,22 @@ public class NotesDatabaseHelper extends SQLiteOpenHelper {
             c.close();
         }
         return noteList;
+    }
+    public Note getNote(int position){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "Select * from " + TABLE_NAME + " where " + position + " = "+  COLUMN_ID;
+        Cursor c  = db.rawQuery(selectQuery,null);
+        Note note = new Note("");
+        try{
+            if(c.moveToFirst()){
+                    note.setTitle(c.getString(1));
+                    note.setContent(c.getString(2));
+                    note.setImageResourceId(c.getString(3));
+                    note.setCreateTime(c.getString(4));
+            }
+        }finally{
+            c.close();
+        }
+        return note;
     }
 }

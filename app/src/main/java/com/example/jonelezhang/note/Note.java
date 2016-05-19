@@ -7,6 +7,7 @@ public class Note {
         private String title;
         private String content;
         private String imageResourcesId;
+        private String createTime;
     //constructor
         public Note(String s){
         }
@@ -20,15 +21,21 @@ public class Note {
         public void setImageResourceId(String imageResourceId){
             this.imageResourcesId = imageResourceId;
         }
+        public void setCreateTime(String createTime){
+            this.createTime = createTime;
+        }
     // get methods
         public String getTitle(){
             return title;
         }
-        public  String getContent(){
+        public String getContent(){
             return content;
         }
         public String getImageResourceId(){
             return imageResourcesId;
+        }
+        public String getCreateTime(){
+            return createTime;
         }
 
 }

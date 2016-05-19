@@ -56,11 +56,14 @@ public class Adapter extends BaseAdapter{
         TextView count = (TextView) convertView.findViewById(R.id.noteCount);
         TextView title =(TextView) convertView.findViewById(R.id.noteTitle);
         ImageView photo = (ImageView) convertView.findViewById(R.id.noteImage);
+        TextView createTime = (TextView) convertView.findViewById(R.id.noteCreateTime);
 
         Note note;
         note = noteList.get(position);
         title.setText(note.getTitle());
-//        if no photo not show ImageView block
+        createTime.setText(note.getCreateTime());
+        count.setText(String.valueOf(position));
+//      if no photo not show ImageView block
         if(note.getImageResourceId() == null)
              {
                  int id = context.getResources().getIdentifier("com.example.jonelezhang.note:drawable/" + "def", null, null);
@@ -70,8 +73,7 @@ public class Adapter extends BaseAdapter{
                 String path = Environment.getExternalStorageDirectory().toString() + "/notes_images/";
                 String photoPath = path + note.getImageResourceId();
                 Bitmap myBitmap = BitmapFactory.decodeFile(photoPath);
-                photo.setImageBitmap(Bitmap.createScaledBitmap(myBitmap, 220 , 270, false));
-                count.setText(String.valueOf(position));
+                photo.setImageBitmap(Bitmap.createScaledBitmap(myBitmap, 220, 270, false));
         }
         return convertView;
     }

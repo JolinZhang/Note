@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -22,21 +23,36 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton write;
     private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
     private List<Note> noteList;
+    private Note note;
     private Adapter adapter;
     private GridView gridView;
+    NotesDatabaseHelper noteHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // get getAllNote function in  NotesDatabaseHelper
-        NotesDatabaseHelper noteHelper = new NotesDatabaseHelper(MainActivity.this);
+        noteHelper = new NotesDatabaseHelper(MainActivity.this);
         noteList = new ArrayList< Note >();
         noteList = noteHelper.getAllNote();
         gridView = (GridView) findViewById(R.id.gridView);
         adapter = new Adapter(MainActivity.this,noteList);
         gridView.setAdapter(adapter);
 
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                 note = new Note("");
+                 note = noteHelper.getNote(position);
+                 Intent i = new Intent(MainActivity.this, noteView.class);
+                 i.putExtra("title",note.getTitle());
+                 i.putExtra("content",note.getContent());
+                 i.putExtra("pictureId",note.getImageResourceId());
+                 i.putExtra("createTime",note.getCreateTime());
+                 startActivity(i);
+            }
+        });
 
 
         //click button, connect to another activity

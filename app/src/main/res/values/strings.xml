@@ -4,4 +4,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_write">write</string>
+    <string name="title_activity_activity_note">activity_note</string>
+    <string name="title_activity_note_view">noteView</string>
 </resources>
