@@ -1,4 +1,7 @@
 <resources>
-    <color name="ActionBar_bg">#eeeeee</color>
-    <color name="ActionBar_title">#999999</color>
+    <!--color design-->
+    <color name="ActionBar_bg">#206CC6</color>
+    <color name="ActionBar_title">#F6EEEa</color>
+    <color name="Activity_bg">#D8D8D8</color>
+    <color name="Activity_main_card_bg">#FFFFFF</color>
 </resources>

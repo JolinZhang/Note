@@ -20,5 +20,9 @@
 
     <style name="ActionBarTitle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/ActionBar_title</item>
+        <item name="android:fontFamily">sans|serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">25dp</item>
     </style>
+
 </resources>

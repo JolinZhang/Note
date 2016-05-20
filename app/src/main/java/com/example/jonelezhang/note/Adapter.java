@@ -53,7 +53,6 @@ public class Adapter extends BaseAdapter{
         if(convertView == null){
             convertView = inflater.inflate(R.layout.layout_note,null);
         }
-        TextView count = (TextView) convertView.findViewById(R.id.noteCount);
         TextView title =(TextView) convertView.findViewById(R.id.noteTitle);
         ImageView photo = (ImageView) convertView.findViewById(R.id.noteImage);
         TextView createTime = (TextView) convertView.findViewById(R.id.noteCreateTime);
@@ -62,7 +61,6 @@ public class Adapter extends BaseAdapter{
         note = noteList.get(position);
         title.setText(note.getTitle());
         createTime.setText(note.getCreateTime());
-        count.setText(String.valueOf(position));
 //      if no photo not show ImageView block
         if(note.getImageResourceId() == null)
              {

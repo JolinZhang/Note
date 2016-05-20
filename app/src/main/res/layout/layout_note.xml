@@ -1,54 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="300dp"
-    android:layout_height="180dp"
-    android:orientation="vertical"
-    android:background="@drawable/bg">
+    android:layout_height="200dp"
+    android:orientation="horizontal"
+    android:background="@color/Activity_main_card_bg">
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="300dp"
-        android:layout_height="170dp"
-        android:layout_gravity="center_horizontal"
+        android:layout_width="150dp"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
         >
         <TextView
-            android:layout_width="130dp"
-            android:layout_height="170dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/noteTitle"
             android:textColor="#333333" />
-
-        <ImageView
-            android:layout_width="170dp"
-            android:layout_height="170dp"
-            android:id="@+id/noteImage"
-            android:paddingTop="5dp"
-            android:paddingBottom="3dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:background="#0000aa"
-        android:layout_gravity="center_horizontal"
-        android:orientation="horizontal">
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/noteCount"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#333333"
-            android:background="#00aaaa"
-            android:layout_gravity="left" />
-        <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/noteCreateTime"
             android:textColor="#333333"
-            android:background="#aa00aa"
             android:layout_gravity="right"
-           />
-
+            />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="150dp"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+    <!--android:layout_gravity="center_horizontal"-->
 
+        <ImageView
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/noteImage" />
+    </LinearLayout>
 </LinearLayout>
