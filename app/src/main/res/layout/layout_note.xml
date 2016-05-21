@@ -3,35 +3,37 @@
     android:layout_width="300dp"
     android:layout_height="200dp"
     android:orientation="horizontal"
-    android:background="@color/Activity_main_card_bg">
+    android:background="@drawable/card">
 
     <LinearLayout
         android:layout_width="150dp"
-        android:layout_height="fill_parent"
+        android:layout_height="200dp"
         android:orientation="vertical"
+        android:paddingTop="20dp"
         >
         <TextView
-            android:layout_width="fill_parent"
+            style="@style/CardTitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/noteTitle"
-            android:textColor="#333333" />
+            android:gravity="center_horizontal" />
         <TextView
-            android:layout_width="fill_parent"
+            style="@style/CardTime"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/noteCreateTime"
-            android:textColor="#333333"
-            android:layout_gravity="right"
-            />
+            android:gravity="right"
+            android:layout_marginTop="20dp"/>
     </LinearLayout>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="150dp"
-        android:layout_height="fill_parent"
+        android:layout_height="200dp"
         android:orientation="vertical">
-    <!--android:layout_gravity="center_horizontal"-->
 
         <ImageView
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/noteImage" />
-    </LinearLayout>
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/noteImage"
+            android:layout_margin="10dp" />
+    </RelativeLayout>
 </LinearLayout>
