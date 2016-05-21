@@ -6,4 +6,7 @@
     <color name="Activity_main_card_bg">#FFFFFF</color>
     <color name ="Activity_main_card_title">#000000</color>
     <color name="Activity_main_card_time">#9B9B9B</color>
+    <color name="EditText_color_focus">#FF5722</color>
+    <color name ="EditText_color">#9B9B9B</color>
+    <color name="EditText_hint">#9B9B9B</color>
 </resources>

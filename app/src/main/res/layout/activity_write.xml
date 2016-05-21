@@ -5,36 +5,47 @@
     android:background="@color/Activity_bg"
     tools:context="com.example.jonelezhang.note.write"
     android:orientation="vertical">
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/addPhoto" />
+
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:elevation="5dp"
+            android:hint="Title"
+            android:textColorHint="@color/EditText_hint"
+            android:layout_margin="10dp"
+            android:layout_gravity="center_horizontal"
+            android:theme="@style/editTextTheme"/>
 
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/title"
-        android:elevation="5dp"
-        android:layout_gravity="center_horizontal" />
-
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:id="@+id/content"
-        android:ems="10"
-        android:elevation="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center_horizontal" />
+         <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:id="@+id/content"
+            android:elevation="5dp"
+             android:hint="Content"
+             android:textColorHint="@color/EditText_hint"
+            android:layout_margin="10dp"
+            android:layout_gravity="center_horizontal"
+             android:theme="@style/editTextTheme"
+            />
 
 
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:id="@+id/addPhoto"
+        android:layout_alignParentBottom="true"
+        android:translationZ="-1dp"/>
+
 
     <ImageButton
         android:layout_width="45dp"
@@ -58,7 +69,6 @@
         android:layout_margin="10dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"/>
-
 
 
 </RelativeLayout>
