@@ -7,28 +7,38 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
     <TextView
+        style="@style/CardTitle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="title"
-        android:id="@+id/title">
+        android:id="@+id/title"
+        android:layout_margin="10dp"
+        android:background="@drawable/card">
     </TextView>
 
     <TextView
+        style="@style/Content"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/content" />
+        android:id="@+id/content"
+        android:layout_margin="10dp" />
+
+
+    </LinearLayout>
 
     <TextView
+        style="@style/CardTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="create  time"
-        android:id="@+id/createTime" />
-    </LinearLayout>
+        android:id="@+id/createTime"
+        android:layout_marginBottom="60dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/card"/>
 
     <ImageButton
         android:layout_width="45dp"

@@ -41,5 +41,11 @@
         <item name="colorControlActivated">@color/EditText_color_focus</item>
         <item name="colorControlHighlight">@color/EditText_color_focus</item>
     </style>
+    <style name="Content">
+        <item name="android:textColor">@color/Content</item>
+        <item name="android:fontFamily">sans|serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">15dp</item>
+    </style>
 
 </resources>

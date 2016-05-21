@@ -9,4 +9,5 @@
     <color name="EditText_color_focus">#FF5722</color>
     <color name ="EditText_color">#9B9B9B</color>
     <color name="EditText_hint">#9B9B9B</color>
+    <color name="Content">#9B9B9B</color>
 </resources>
