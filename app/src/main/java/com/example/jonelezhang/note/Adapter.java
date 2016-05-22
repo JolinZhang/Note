@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.List;
@@ -59,7 +60,8 @@ public class Adapter extends BaseAdapter{
 
         Note note;
         note = noteList.get(position);
-        title.setText(note.getTitle());
+        int aa = note.getId();
+        title.setText(note.getTitle()+"~"+aa+"~"+position);
         createTime.setText(note.getCreateTime());
 //      if no photo not show ImageView block
         if(note.getImageResourceId() == null)

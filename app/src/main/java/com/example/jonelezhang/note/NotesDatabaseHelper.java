@@ -62,6 +62,7 @@ public class NotesDatabaseHelper extends SQLiteOpenHelper {
         if(c.moveToFirst()){
             do{
                 Note note = new Note("");
+                note.setId(c.getInt(0));
                 note.setTitle(c.getString(1));
                 note.setContent(c.getString(2));
                 note.setImageResourceId(c.getString(3));
@@ -74,13 +75,14 @@ public class NotesDatabaseHelper extends SQLiteOpenHelper {
         }
         return noteList;
     }
-    public Note getNote(int position){
+    public Note getNote(int id){
         SQLiteDatabase db = this.getReadableDatabase();
-        String selectQuery = "Select * from " + TABLE_NAME + " where " + position + " = "+  COLUMN_ID;
+        String selectQuery = "Select * from " + TABLE_NAME + " where " + id + " = " + COLUMN_ID;
         Cursor c  = db.rawQuery(selectQuery,null);
         Note note = new Note("");
         try{
             if(c.moveToFirst()){
+                    note.setId(c.getInt(0));
                     note.setTitle(c.getString(1));
                     note.setContent(c.getString(2));
                     note.setImageResourceId(c.getString(3));
@@ -91,4 +93,10 @@ public class NotesDatabaseHelper extends SQLiteOpenHelper {
         }
         return note;
     }
+    public void deleteNote(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String deleteQuery = "Delete from " + TABLE_NAME + " where " + id + " = "+  COLUMN_ID;
+        db.execSQL(deleteQuery);
+    }
+
 }

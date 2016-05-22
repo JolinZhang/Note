@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/Activity_bg"
+    android:background="#F6EEEa"
     tools:context="com.example.jonelezhang.note.noteView"
     android:orientation="vertical">
 
@@ -15,8 +15,11 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/title"
-        android:layout_margin="10dp"
-        android:background="@drawable/card">
+        android:background="@drawable/bottomline"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp">
     </TextView>
 
     <TextView
@@ -38,12 +41,12 @@
         android:layout_marginRight="10dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/card"/>
+        android:background="@drawable/bottomline"/>
 
     <ImageButton
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:id="@+id/photo"
+        android:id="@+id/delete"
         android:src="@drawable/ic_delete"
         android:background="@drawable/oval"
         android:elevation="10dp"

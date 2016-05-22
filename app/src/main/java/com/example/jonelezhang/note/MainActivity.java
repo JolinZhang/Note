@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         // get getAllNote function in  NotesDatabaseHelper
         noteHelper = new NotesDatabaseHelper(MainActivity.this);
-        noteList = new ArrayList< Note >();
         noteList = noteHelper.getAllNote();
         gridView = (GridView) findViewById(R.id.gridView);
         adapter = new Adapter(MainActivity.this,noteList);
@@ -43,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                 note = new Note("");
-                 note = noteHelper.getNote(position);
+                 note = noteList.get(position);
                  Intent i = new Intent(MainActivity.this, noteView.class);
+                 i.putExtra("id",note.getId());
                  i.putExtra("title",note.getTitle());
                  i.putExtra("content",note.getContent());
                  i.putExtra("pictureId",note.getImageResourceId());

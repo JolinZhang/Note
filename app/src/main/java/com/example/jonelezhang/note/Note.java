@@ -4,6 +4,7 @@ package com.example.jonelezhang.note;
  * Created by Jonelezhang on 5/14/16.
  */
 public class Note {
+        private int id;
         private String title;
         private String content;
         private String imageResourcesId;
@@ -12,6 +13,7 @@ public class Note {
         public Note(String s){
         }
     //set methods
+        public void setId(Integer id){ this.id = id; }
         public void setTitle(String title){
             this.title = title;
         }
@@ -25,6 +27,7 @@ public class Note {
             this.createTime = createTime;
         }
     // get methods
+        public int   getId(){return id;}
         public String getTitle(){
             return title;
         }
