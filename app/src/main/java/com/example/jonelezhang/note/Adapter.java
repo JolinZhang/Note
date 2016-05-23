@@ -61,7 +61,7 @@ public class Adapter extends BaseAdapter{
         Note note;
         note = noteList.get(position);
         int aa = note.getId();
-        title.setText(note.getTitle()+"~"+aa+"~"+position);
+        title.setText(note.getTitle());
         createTime.setText(note.getCreateTime());
 //      if no photo not show ImageView block
         if(note.getImageResourceId() == null)
