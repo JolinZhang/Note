@@ -40,5 +40,4 @@ public class Note {
         public String getCreateTime(){
             return createTime;
         }
-
 }
