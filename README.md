@@ -6,8 +6,8 @@ It is an android application which users can record issues. Note has similar fun
 
 It covers:  
 + used SQlite to save data, not saved in internal storage.
-5. use grideView to show notes  
-6. take photo or choose Photos from gallery  
-9. float button  
+5. used grideView to show notes  
+6. took photo or chose Photos from gallery  
+9. inclued float button  
 9. action bar self-design  
 ......
