@@ -2,12 +2,15 @@
 
 # Note
 
-It is an android application which users can record issues. Note has similar function with Note2, but I will use material, to make it looks better and novel.
+It is an android application which users can record issues. Use material design to make it looks better and novel.
 
 It covers:  
-+ used SQlite to save data, not saved in internal storage.
-5. used grideView to show notes  
++  custom adapter for gridview to show note list
+5. save thumbnail of image in external folder
+6. store note info in SQLite Database
 6. took photo or chose Photos from gallery  
-9. inclued float button  
-9. action bar self-design  
+9. float button  
+9. self-design action bar  
 ......
+
+
