@@ -1,8 +1,11 @@
 package com.example.jonelezhang.note;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,6 +15,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.preference.DialogPreference;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +27,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -38,6 +45,14 @@ public class write extends AppCompatActivity {
     private ImageButton submit;
     private NotesDatabaseHelper dbHelper;
 
+    // Storage Permissions variables
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +60,9 @@ public class write extends AppCompatActivity {
         title = (EditText) findViewById( R.id.title );
         content = (EditText) findViewById( R.id.content );
         dbHelper = new NotesDatabaseHelper(this);
+
+        verifyStoragePermissions(this);
+
 //      photo button click, show alertDialog
         takePhoto = (ImageButton) findViewById(R.id.photo);
         takePhoto.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +80,22 @@ public class write extends AppCompatActivity {
             }
         });
     }
+
+    //persmission method.
+    public static void verifyStoragePermissions(Activity activity) {
+        // Check if we have read or write permission
+        int writePermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int readPermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE);
+
+        if (writePermission != PackageManager.PERMISSION_GRANTED || readPermission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
+    }
     // save title, content and image_id into note
     public void saveNote(){
         Note note = new Note("");
@@ -71,7 +105,7 @@ public class write extends AppCompatActivity {
         //use function addNote in class NotesDatabaseHelper to insert data
         dbHelper.addNote(note);
     }
-//  design alertDialog
+    //  design alertDialog
     private void selectImage(){
         final CharSequence photoOptions[] = new CharSequence[]{"Take Photo", "Choose Photo"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -90,7 +124,7 @@ public class write extends AppCompatActivity {
         });
         builder.show();
     }
-//  save image into external folder
+    //  save image into external folder
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
        if(resultCode == RESULT_OK) {
@@ -115,7 +149,8 @@ public class write extends AppCompatActivity {
                c.close();
                File imgFile = new  File(picturePath);
                //rotate picture
-               Bitmap bitmap = rotatePicture(imgFile);
+               Bitmap bitmap = null;
+               bitmap = rotatePicture(imgFile);
                //show in ImageView
                addPhoto.setImageBitmap(bitmap);
                //save picture
@@ -147,10 +182,9 @@ public class write extends AppCompatActivity {
         }
     }
     // rotate picture
-    public Bitmap rotatePicture(File imgFile){
+    public Bitmap rotatePicture(File imgFile) {
         ExifInterface exif = null;
         int rotate = 0;
-        //show Thumbnail of picture as bg
         Bitmap thumbnail = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
         try{
             exif = new ExifInterface(imgFile.getAbsolutePath());
