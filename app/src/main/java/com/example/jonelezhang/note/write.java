@@ -18,6 +18,7 @@ import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
@@ -52,6 +53,8 @@ public class write extends AppCompatActivity {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
 
+    private CardView write_showImage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +64,12 @@ public class write extends AppCompatActivity {
         content = (EditText) findViewById( R.id.content );
         dbHelper = new NotesDatabaseHelper(this);
 
-        verifyStoragePermissions(this);
+        write_showImage = (CardView) findViewById(R.id.write_showImage);
+        write_showImage.setVisibility(View.INVISIBLE);
 
-//      photo button click, show alertDialog
+        //get permission of write external storage
+        verifyStoragePermissions(this);
+        //photo button click, show alertDialog
         takePhoto = (ImageButton) findViewById(R.id.photo);
         takePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,6 +141,7 @@ public class write extends AppCompatActivity {
                Bundle extras = data.getExtras();
                Bitmap imageBitmap = (Bitmap) extras.get("data");
                //show in ImageView
+               write_showImage.setVisibility(View.VISIBLE);
                addPhoto.setImageBitmap(imageBitmap);
                //save picture
                savePicture(imageBitmap);
@@ -152,6 +159,7 @@ public class write extends AppCompatActivity {
                Bitmap bitmap = null;
                bitmap = rotatePicture(imgFile);
                //show in ImageView
+               write_showImage.setVisibility(View.VISIBLE);
                addPhoto.setImageBitmap(bitmap);
                //save picture
                savePicture(bitmap);
