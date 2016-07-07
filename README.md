@@ -14,3 +14,6 @@ It covers:
 ......
 
 
+<img src="https://raw.githubusercontent.com/JolinZhang/Note/master/List.jpg" width="20%"></img> 
+<img src="https://raw.githubusercontent.com/JolinZhang/Note/master/Write.jpg" width="20%"></img> 
+<img src="https://raw.githubusercontent.com/JolinZhang/Note/master/View.jpg" width="20%"></img> 
